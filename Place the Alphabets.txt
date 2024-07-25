@@ -1,0 +1,34 @@
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
+
+public class CharacterArrayGenerator {
+    public static char[] generateCharacterArray(int[] input1) {
+        int n = input1.length;
+        char[] result = new char[n];
+        
+        int[] sortedInput = input1.clone();
+        Arrays.sort(sortedInput);
+        
+        Map<Integer, Character> elementToCharMap = new HashMap<>();
+        for (int i = 0; i < n; i++) {
+            elementToCharMap.put(sortedInput[i], (char) ('a' + i));
+        }
+        
+        for (int i = 0; i < n; i++) {
+            result[i] = elementToCharMap.get(input1[i]);
+        }
+        
+        return result;
+    }
+    
+    public static void main(String[] args) {
+        int[] input1 = {10, 5, 70, 1};
+        char[] output = generateCharacterArray(input1);
+        System.out.println(Arrays.toString(output)); 
+        
+        int[] input2 = {4, 5, -2, 8, 99, 67};
+        char[] output2 = generateCharacterArray(input2);
+        System.out.println(Arrays.toString(output2)); 
+    }
+}
